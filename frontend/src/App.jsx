@@ -4,6 +4,7 @@ import "./App.css";
 
 const STORAGE_KEY = "excel-ai-chatbot-chats";
 const ACTIVE_CHAT_KEY = "excel-ai-chatbot-active-chat";
+const API_BASE = "https://botforexcel.onrender.com";
 
 function App() {
   const [file, setFile] = useState(null);
@@ -80,7 +81,7 @@ function App() {
       const formData = new FormData();
       formData.append("file", file);
 
-      const res = await axios.post("http://127.0.0.1:8000/upload", formData);
+      const res = await axios.post(`${API_BASE}/upload`, formData);
 
       alert("File Uploaded Successfully");
       console.log(res.data);
@@ -118,7 +119,7 @@ function App() {
     );
 
     try {
-      const res = await axios.post("http://127.0.0.1:8000/chat", {
+      const res = await axios.post(`${API_BASE}/chat`, {
         message: userMessage,
       });
 
